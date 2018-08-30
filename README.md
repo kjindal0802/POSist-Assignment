@@ -1,6 +1,10 @@
 # POSist-Assignment
 Assignment of round 2nd by posist
 
+There are 2 type of files:
+.cpp and .py for the code
+
+
 Created a assignment which is capable of doing following operations:
 1. Create the Genesis Node. Genesis Node has parent node as null. 2. Create set of child nodes of a particular node. 3. Create a child node that originates from a particular node. 4. Encrypt and decrypt the data inside the node. 5. Verify the owner of the node, with the encryption key. Symmetric encryption shows the data. The integrity of the data is checked by computing the hash value of the data and checking with the already computed hash. 6. Edit value of a node. Editing can have many forms, edit value of a subtree root, trickle down the
 subtree node value to a set of children, or one child or edit value of a leaf node. 7. Transfer ownership of a particular node value. The previous owner validates his/her ownership by
