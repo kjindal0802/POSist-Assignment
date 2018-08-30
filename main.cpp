@@ -20,6 +20,7 @@ int main()
     cout<<"Enter 1 to create new node";
     cout<<"Enter 2 to view existing node";
     cout<<"Enter 3 to modify node";
+    cout<<"Enter 4 to view longest chain";
     int n;
     cin>>n;
     switch(n)
@@ -27,20 +28,24 @@ int main()
         case 1:
         void enter_new_node();
         break;
-        
+
         case 2:
         void view_node();
         break;
-        
+
         case 3:
         void modify_node();
+        break;
+
+        case 4:
+        void longest_chain();
         break;
     }
     return 0;
 }
 void enter_new_node()
 {
-    
+
     cout<<"Enter a new node";
     double abc;
     cin>>abc;
@@ -59,7 +64,7 @@ void enter_new_node()
     double data = encryption(abc,name,hash_srt);
     `if(Node*root == NULL)//checking root node to be null or not
         Node* root = newNode(data);//Creating Genesis node and making it null;
-    else 
+    else
     {
          if(no==2)
           (root->child).push_back(newNode(data));//pushing no of nodes at level 1
@@ -72,11 +77,11 @@ void view_node()
     cout<<"Enter your name";
     string name;
     cin>>string;
-    if(hash_srt.find(name))
+    if(hash_srt.find(name))//if the owner name is present in the hash set
     {
         cout<<"enter your key";
         int b;
-        cin>>b;
+        cin>>b;//enter the private key for decryption
         cout<<decryption(b,name,hash_srt);
     }
 }
@@ -153,8 +158,8 @@ double decryption(double key,string name,unordered_map hash_srt)
     double c = pow(msg,e);
     double m = pow(c,d);
     c=fmod(c,n);
-    m=fmod(m,n);    
-    
+    m=fmod(m,n);
+
     if(hash_srt.find(m))
         cout<<hash_srt->second;
 
@@ -165,13 +170,41 @@ void modify_node()
     cout<<"Enter your name";
     string name;
     cin>>string;
-    if(hash_srt.find(name))
+    if(hash_srt.find(name))//if name is present in hash table
     {
         cout<<"enter new key";
         double b;
         cout<<"enter level";
-    hash_srt.delete(key,name);
-    void encryption(key,name,hash_srt);
+    hash_srt.delete(key,name);//delete the existing key
+    void encryption(key,name,hash_srt);//and create a new one at that level
     }
 }
 
+void transfer_ownership()
+{
+    cout<<"Enter your name";
+    string name;
+    cin>>string;
+    if(hash_srt.find(name))//if name is present in hash table
+    {
+     string abc;
+     cout<<"Enter new owner name";
+     cin>>abc;
+     hash_srt->second=abc;//updating hash table on a new owner
+    }
+}
+
+void diameter(struct node * root)
+{
+   if (root == NULL)
+     return 0;
+
+  int lheight = height(root->left);
+  int rheight = height(root->right);
+
+  /* get the diameter of left and right sub-trees */
+  int ldiameter = diameter(root->left);
+  int rdiameter = diameter(root->right);
+
+  return max(lheight + rheight + 1, max(ldiameter, rdiameter));
+}
